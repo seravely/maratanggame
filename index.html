@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>마라탕 만들기 게임</title>
+
+<style>
+  body {
+    margin: 0;
+    background: #00ff00; /* 크로마키 */
+    font-family: "Noto Sans KR", sans-serif;
+    user-select: none;
+  }
+
+  .container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .bowl {
+    width: 400px;
+    height: 250px;
+    background: #000;
+    border-radius: 50% 50% 45% 45%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  }
+
+  .broth {
+    width: 350px;
+    height: 160px;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    transition: background 0.3s;
+  }
+
+  .ingredients-panel {
+    margin-top: 20px;
+    width: 90vw;
+    height: 120px;
+    overflow-x: scroll;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+  }
+
+  .ingredient-btn {
+    background: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap;
+    transition: 0.15s;
+  }
+
+  .ingredient-btn:hover {
+    background: #ffca85;
+    transform: translateY(-2px);
+  }
+
+  #placed-ingredients img {
+    position: absolute;
+    width: 60px;
+    transform: translate(-50%, -50%);
+    transition: 0.2s;
+  }
+
+  .broth-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .broth-btn {
+    background: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .broth-btn.active {
+    background: #ffb347;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="bowl">
+  <div id="broth" class="broth"></div>
+  <div id="placed-ingredients"></div>
+</div>
