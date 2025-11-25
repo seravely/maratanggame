@@ -105,3 +105,77 @@
   <div id="broth" class="broth"></div>
   <div id="placed-ingredients"></div>
 </div>
+  <!-- 육수 선택 버튼 -->
+<div class="broth-buttons">
+  <button class="broth-btn active" data-type="clear">물(투명)</button>
+  <button class="broth-btn" data-type="white">백탕</button>
+  <button class="broth-btn" data-type="mild">1단계</button>
+  <button class="broth-btn" data-type="medium">2단계</button>
+  <button class="broth-btn" data-type="hot">3단계🔥</button>
+</div>
+
+<!-- 재료 버튼 패널 -->
+<div id="ingredients-panel" class="ingredients-panel"></div>
+
+</div> <!-- container end -->
+
+<script>
+const ingredients = [
+  "분모자당면","중국당면","옥수수면","완자","새우","메추리알",
+  "목이버섯","팽이버섯","새송이버섯","소고기","양고기","감자",
+  "연근","알배추","숙주","청경채","건두부","사각두부","연두부","곤약"
+];
+
+const ingredientPanel = document.getElementById("ingredients-panel");
+const placedContainer = document.getElementById("placed-ingredients");
+const broth = document.getElementById("broth");
+
+// UI에 재료 버튼 추가
+ingredients.forEach(item => {
+  const btn = document.createElement("button");
+  btn.className = "ingredient-btn";
+  btn.textContent = item;
+  btn.addEventListener("click", () => addIngredient(item));
+  ingredientPanel.appendChild(btn);
+});
+
+// 재료 추가 함수
+function addIngredient(name) {
+  const img = document.createElement("img");
+  img.src = "https://emojiapi.dev/api/v1/1f35c/256.png"; // 🍜 임시이미지 (나중에 Illust 적용)
+  
+  img.style.left = Math.random() * 60 + 20 + "%";
+  img.style.top = Math.random() * 30 + 40 + "%";
+
+  placedContainer.appendChild(img);
+
+  setTimeout(() => img.style.transform = "translate(-50%, -50%) scale(1.15)", 50);
+  setTimeout(() => img.style.transform = "translate(-50%, -50%) scale(1)", 200);
+}
+
+// 육수 색 변경
+document.querySelectorAll(".broth-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".broth-btn").forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+    changeBroth(button.dataset.type);
+  });
+});
+
+function changeBroth(type) {
+  let color = "transparent";
+
+  switch(type){
+    case "white": color = "#f2ddc7"; break;
+    case "mild": color = "#ffb98a"; break;
+    case "medium": color = "#ff7b55"; break;
+    case "hot": color = "#d13820"; break;
+  }
+
+  broth.style.background = color;
+}
+</script>
+
+</body>
+</html>
+
