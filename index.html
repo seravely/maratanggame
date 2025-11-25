@@ -8,7 +8,7 @@
 <style>
   body {
     margin: 0;
-    background: #00ff00; /* 크로마키 */
+    background: #00ff00;
     font-family: "Noto Sans KR", sans-serif;
     user-select: none;
   }
@@ -47,7 +47,7 @@
     margin-top: 20px;
     width: 90vw;
     height: 120px;
-    overflow-x: scroll;
+    overflow-x: auto;
     display: flex;
     gap: 10px;
     padding: 10px;
@@ -98,26 +98,27 @@
   }
 </style>
 </head>
+
 <body>
+
 <div class="container">
 
-<div class="bowl">
-  <div id="broth" class="broth"></div>
-  <div id="placed-ingredients"></div>
-</div>
-  <!-- 육수 선택 버튼 -->
-<div class="broth-buttons">
-  <button class="broth-btn active" data-type="clear">물(투명)</button>
-  <button class="broth-btn" data-type="white">백탕</button>
-  <button class="broth-btn" data-type="mild">1단계</button>
-  <button class="broth-btn" data-type="medium">2단계</button>
-  <button class="broth-btn" data-type="hot">3단계🔥</button>
-</div>
+  <div class="bowl">
+    <div id="broth" class="broth"></div>
+    <div id="placed-ingredients"></div>
+  </div>
 
-<!-- 재료 버튼 패널 -->
-<div id="ingredients-panel" class="ingredients-panel"></div>
+  <div class="broth-buttons">
+    <button class="broth-btn active" data-type="clear">물(투명)</button>
+    <button class="broth-btn" data-type="white">백탕</button>
+    <button class="broth-btn" data-type="mild">1단계</button>
+    <button class="broth-btn" data-type="medium">2단계</button>
+    <button class="broth-btn" data-type="hot">3단계🔥</button>
+  </div>
 
-</div> <!-- container end -->
+  <div id="ingredients-panel" class="ingredients-panel"></div>
+
+</div>
 
 <script>
 const ingredients = [
@@ -130,7 +131,6 @@ const ingredientPanel = document.getElementById("ingredients-panel");
 const placedContainer = document.getElementById("placed-ingredients");
 const broth = document.getElementById("broth");
 
-// UI에 재료 버튼 추가
 ingredients.forEach(item => {
   const btn = document.createElement("button");
   btn.className = "ingredient-btn";
@@ -139,10 +139,9 @@ ingredients.forEach(item => {
   ingredientPanel.appendChild(btn);
 });
 
-// 재료 추가 함수
 function addIngredient(name) {
   const img = document.createElement("img");
-  img.src = "https://emojiapi.dev/api/v1/1f35c/256.png"; // 🍜 임시이미지 (나중에 Illust 적용)
+  img.src = "https://emojiapi.dev/api/v1/1f35c/256.png";
   
   img.style.left = Math.random() * 60 + 20 + "%";
   img.style.top = Math.random() * 30 + 40 + "%";
@@ -153,7 +152,6 @@ function addIngredient(name) {
   setTimeout(() => img.style.transform = "translate(-50%, -50%) scale(1)", 200);
 }
 
-// 육수 색 변경
 document.querySelectorAll(".broth-btn").forEach(button => {
   button.addEventListener("click", () => {
     document.querySelectorAll(".broth-btn").forEach(btn => btn.classList.remove("active"));
@@ -178,4 +176,3 @@ function changeBroth(type) {
 
 </body>
 </html>
-
